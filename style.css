@@ -6,8 +6,9 @@
   --color-dark-white: #bdbdbd;
   --color-pink: #fe918d;
   --color-dark-pink: #ff6863;
-  --color-light-black: #4d4d4d;
-  --color-dark-grey: #616161;
+  /* --color-light-black: #4d4d4d; */
+  --color-grey: #616161;
+  --color-dark-grey: #4d4d4d;
   --color-light-grey: #7c7979;
   --color-blue: #73aace;
   --color-yellow: #fff7d1;
@@ -158,10 +159,15 @@ p {
 .home_contact:hover {
   background-color: var(--color-dark-pink);
 }
+
 /* Section common */
 .section {
   padding: 50px;
   text-align: center;
+  margin: auto;
+}
+
+.section-container {
   max-width: 1200px;
   margin: auto;
 }
@@ -213,4 +219,60 @@ p {
 }
 .job_period {
   font-size: var(--font-micro);
+}
+
+/* Skills */
+
+#skill {
+  background-color: var(--color-yellow);
+}
+
+.skillset {
+  display: flex;
+  background-color: var(--color-light-grey);
+  color: var(--color-light-white);
+  margin: 20px 0;
+}
+
+.skillset_title {
+  color: var(--color-white);
+  margin: 0;
+}
+.skillset_left {
+  flex-basis: 60%;
+  background-color: var(--color-dark-grey);
+  padding: 20px 40px;
+}
+
+.skill {
+  margin-bottom: 32px;
+}
+
+.skill_description {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill_bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-grey);
+}
+
+.skill_value {
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-orange);
+}
+.skillset_right {
+  flex-basis: 40%;
+  /* padding: 20px; */
+}
+.tools {
+  background-color: var(--color-grey);
+}
+
+.tools,
+.etc {
+  padding: 20px;
 }
