@@ -14,7 +14,7 @@
   --color-yellow: #fff7d1;
   --color-orange: #feb546;
   --color-black: #000;
-  --color-dark-blue: #4d97c9;
+  --color-dark-blue: #346585;
 
   /* Font size */
   --font-large: 48px;
@@ -124,9 +124,17 @@ p {
 }
 
 .navbar_menu_item:hover {
-  background-color: var(--color-dark-pink);
+  background-color: var(--color-dark-blue);
 }
 
+.navbar_toggle-btn {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  font-size: 24px;
+  color: var(--color-white);
+  display: none;
+}
 /* Home */
 #home {
   background: url(img/home-background4.png) center/cover no-repeat;
@@ -157,7 +165,7 @@ p {
 }
 
 .home_contact:hover {
-  background-color: var(--color-dark-pink);
+  background-color: var(--color-dark-blue);
 }
 
 /* Section common */
@@ -292,7 +300,7 @@ p {
 
 .category_btn.active,
 .category_btn:hover {
-  background-color: var(--color-pink);
+  background-color: var(--color-blue);
   color: var(--color-white);
 }
 
@@ -413,7 +421,7 @@ p {
 }
 
 .testimonial_speech-bubble a {
-  color: var(--color-pink);
+  color: var(--color-blue);
 }
 
 /* Contact */
@@ -440,5 +448,47 @@ p {
 
 .contact_links i:hover {
   transform: scale(1.1);
-  color: var(--color-pink);
+  color: var(--color-yellow);
+}
+
+/* For below 768px screen width */
+
+@media screen and (max-width: 768px) {
+  .navbar_toggle-btn {
+    display: block;
+    cursor: pointer;
+  }
+
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar_menu {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    display: none;
+  }
+
+  .about_majors {
+    flex-direction: column;
+  }
+
+  .major {
+    margin-bottom: 38px;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+
+  .project {
+    flex-grow: 1;
+  }
+
+  .testimonial_avatar {
+    width: 80px;
+    height: 80px;
+  }
 }
