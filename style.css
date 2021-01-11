@@ -103,6 +103,11 @@ p {
   transition: all var(--animation-duration) ease-in-out;
 }
 
+#navbar.sticky {
+  background-color: var(--color-blue);
+  z-index: 999;
+}
+
 .navbar_menu {
   display: flex;
 }
@@ -137,17 +142,17 @@ p {
   display: none;
 }
 
-#navbar.sticky {
-  background-color: var(--color-blue);
-  z-index: 999;
-}
-
 /* Home */
 #home {
   background: url(img/home-background4.png) center/cover no-repeat;
   padding: 40px;
   padding-top: 120px;
   text-align: center;
+}
+
+#home.sticky {
+  background-color: transparent;
+  transition: all var(--animation-duration) ease-in-out;
 }
 
 .home_avatar {

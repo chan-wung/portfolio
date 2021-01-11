@@ -4,6 +4,7 @@
 
 const navbar = document.querySelector("#navbar");
 const navbarHeight = navbar.getBoundingClientRect().height;
+
 document.addEventListener('scroll', () => {
     if(window.scrollY > navbarHeight){
         navbar.classList.add('sticky');
@@ -31,6 +32,15 @@ navbarMenu.addEventListener('click', (event) => {
 const homeContactBtn = document.querySelector('.home_contact');
 homeContactBtn.addEventListener('click', (event) => {
     scrollIntoView('#contact');
+});
+
+// Make home slowly fade to transparent as the window scrolls down
+const home = document.querySelector(".home_container");
+const homeHeight = home.getBoundingClientRect().height;
+
+document.addEventListener('scroll', () => {
+    console.log(1 - window.scrollY / homeHeight);
+    home.style.opacity = 1 - window.scrollY / homeHeight;
 });
 
 function scrollIntoView(selector){
