@@ -172,6 +172,10 @@ p {
   color: var(--color-white);
 }
 
+.home_title {
+    font-size: var(--font-medium);
+}
+
 .home_contact {
   color: var(--color-white);
   font-size: var(--font-regular);
@@ -220,6 +224,18 @@ p {
 .major_icon:hover i {
   color: var(--color-pink);
   transform: rotate(30deg) scale(1.1);
+}
+.major:nth-child(1) .major_icon:hover i {
+  color: #FF5733;
+}
+.major:nth-child(2) .major_icon:hover i {
+  color: #33A0FF;
+}
+.major:nth-child(3) .major_icon:hover i {
+  color: #F0DB4F;
+}
+.major:nth-child(4) .major_icon:hover i {
+  color: #41B883;
 }
 
 .major_icon i {
@@ -423,6 +439,7 @@ p {
 .project_description span {
   text-align: left;
   padding-left: 5px;
+  color: var(--color-white);
 }
 /* Testimonial */
 
