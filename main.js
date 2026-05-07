@@ -1,176 +1,221 @@
 'use strict';
 
-// Make navbar transparent when it is on the top
+/* ===========================================
+   경력 년차 계산 (실제 근무 기간 합산, 공백 제외)
+   진성이디씨: 2021.02 ~ 2021.06 = 5개월 (고정)
+   ㈜나모:     2021.08 ~ 2024.11 = 40개월 (고정, 11월 포함)
+   ㈜스프링웍스: 2026.01 ~ 현재 (동적, 현재 달 포함)
+=========================================== */
+function calcCareerYears() {
+  const JINSUNG = 5;
+  const NAMO    = 40;
 
-const navbar = document.querySelector("#navbar");
-const navbarHeight = navbar.getBoundingClientRect().height;
-const arrowBtn = document.querySelector(".arrow_btn");
-document.addEventListener('scroll', () => {
-    if(window.scrollY > navbarHeight){
-        navbar.classList.add('sticky');
-        arrowBtn.classList.add('sticky');
-    } else{
-        navbar.classList.remove('sticky');
-        arrowBtn.classList.remove('sticky');
-    }
+  const springStart = new Date(2026, 0);
+  const now         = new Date();
+  const spring = Math.max(
+    (now.getFullYear() - springStart.getFullYear()) * 12 +
+    (now.getMonth() - springStart.getMonth()) + 1,
+    0
+  );
+
+  return Math.floor((JINSUNG + NAMO + spring) / 12);
+}
+
+/* ===========================================
+   Init
+=========================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const years = calcCareerYears();
+
+  const careerEl = document.getElementById('careerYears');
+  if (careerEl) careerEl.textContent = years;
+
+  const footerYear = document.getElementById('footerYear');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+  initTyping();
+  initHeader();
+  initMobileMenu();
+  initScrollSpy();
+  initFadeUp();
+  initCountUp();
+  initClipboardCopy();
+  initScrollTop();
 });
 
-// Navbar toggle button for small screen
-const navbarToggleBtn = document.querySelector('.navbar_toggle-btn');
-navbarToggleBtn.addEventListener('click', () => {
-    navbarMenu.classList.toggle('open');
-});
+/* ===========================================
+   Typing effect (Hero title)
+=========================================== */
+function initTyping() {
+  const el = document.getElementById('typingTitle');
+  if (!el) return;
 
-// Show "arrow" button when scrolling down
-arrowBtn.addEventListener('click', (event) => {
-    scrollIntoView('#home');
-});
+  const text = 'Web Publisher';
+  let i = 0;
 
-// Handle scrolling when tapping on the navbar menu
+  setTimeout(() => {
+    const timer = setInterval(() => {
+      el.textContent += text[i++];
+      if (i >= text.length) clearInterval(timer);
+    }, 80);
+  }, 500);
+}
 
-const navbarMenu = document.querySelector('.navbar_menu');
-navbarMenu.addEventListener('click', (event) => {
-    
-    const target = event.target;
-    const link = target.dataset.link;
-    if(link == null){
-        return;
-    }
-    navbarMenu.classList.remove('open'); 
-    scrollIntoView(link);
+/* ===========================================
+   Header scroll
+=========================================== */
+function initHeader() {
+  const header = document.getElementById('header');
+  if (!header) return;
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
 
-    // target.classList.remove('active');
-    // target.classList.add('active');
-    console.log(target);
-});
+/* ===========================================
+   Mobile menu
+=========================================== */
+function initMobileMenu() {
+  const btn   = document.getElementById('menuBtn');
+  const menu  = document.getElementById('mobileMenu');
+  const lines = document.querySelectorAll('.hamburger-line');
+  if (!btn || !menu) return;
 
-// Handle click on "contact me" button on home
+  const close = () => {
+    menu.classList.add('hidden');
+    btn.setAttribute('aria-expanded', 'false');
+    lines.forEach(l => l.classList.remove('open'));
+  };
 
-const homeContactBtn = document.querySelector('.home_contact');
-homeContactBtn.addEventListener('click', (event) => {
+  btn.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    if (isOpen) { close(); return; }
+    menu.classList.remove('hidden');
+    btn.setAttribute('aria-expanded', 'true');
+    lines.forEach(l => l.classList.add('open'));
+  });
 
-    scrollIntoView('#contact');
-});
+  document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', close));
+}
 
-// Make home slowly fade to transparent as the window scrolls down
-const home = document.querySelector(".home_container");
-const homeHeight = home.getBoundingClientRect().height;
+/* ===========================================
+   Scroll spy
+=========================================== */
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  if (!sections.length) return;
 
-document.addEventListener('scroll', () => {
-    // console.log(1 - window.scrollY / homeHeight);
-    home.style.opacity = 1 - window.scrollY / homeHeight;
-});
+  const setActive = id => navLinks.forEach(link =>
+    link.classList.toggle('active', link.getAttribute('href') === '#' + id)
+  );
 
-// Projects
-
-const workBtnContainer = document.querySelector('.work_categories');
-const projectContainer = document.querySelector('.work_projects');
-const projects = document.querySelectorAll('.project');
-
-workBtnContainer.addEventListener('click', (e) => {
-    const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
-    if(filter == null){
-        return;
-    }
-    // Remove selection from the previous item and select the new one
-    const active = document.querySelector('.category_btn.active');
-    active.classList.remove('active');
-    const target = 
-        e.target.nodeName === 'BUTTON' ? e.target : e.target.parentNode;
-    target.classList.add('active');
-    
-
-    // console.log(filter);
-
-    projectContainer.classList.add('anim-out');
-    setTimeout(() => {
-        projects.forEach((project) => {
-            console.log(project.dataset.type);
-            if(filter === '*' || filter === project.dataset.type){
-                project.classList.remove('invisible');
-            } else{
-                project.classList.add('invisible');
-            }
-        });
-    
-        projectContainer.classList.remove('anim-out');
-    }, 300);
-
-
-});
-
-
-
-
-// 1. 모든 섹션 요소들과 모든 아이템들을 가지고 온다
-// 2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다.
-// 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
-
-
-// 1. 모든 섹션 요소들과 모든 아이템들을 가지고 온다
-const sectionIds = [
-    '#home',
-    '#about',
-    '#skill',
-    '#work',
-    '#testimonials',
-    '#contact',
-];
-
-const sections = sectionIds.map(id => document.querySelector(id));
-const navItems= sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
-// console.log(sections);
-// console.log(navItems);
-
-
-// 2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다.
-
-let selectedNavIndex = 0;
-let selectedNavItem = navItems[0];
-function selectNavItem(selected){
-    selectedNavItem.classList.remove('active');
-    selectedNavItem = selected;
-    selectedNavItem.classList.add('active');
-};
-
-function scrollIntoView(selector){
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: "smooth"});
-    selectNavItem(navItems[sectionIds.indexOf(selector)]);
-};
-
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.3,
-};
-
-const observerCallback = (entris, observer) => {
-    entris.forEach(entry => {
-        // console.log(entry.target);
-        if(!entry.isIntersecting && entry.intersectionRatio > 0){
-            // console.log(entry);
-            const index = sectionIds.indexOf(`#${entry.target.id}`);
-            // console.log(index, entry.target.id);
-
-            // 스크롤링이 아래로 되어서 페이지가 올라옴
-            if(entry.boundingClientRect.y < 0){
-                selectedNavIndex = index + 1;
-            }else{
-                selectedNavIndex = index - 1;
-            }
-        }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
     });
-};
+  }, { rootMargin: '-40% 0px -55% 0px' });
 
-const observer = new IntersectionObserver(observerCallback, observerOptions);
-sections.forEach(section => observer.observe(section));
+  sections.forEach(sec => io.observe(sec));
 
-window.addEventListener('wheel', () => {
-    if(window.scrollY === 0){
-        selectedNavIndex = 0;
-    } else if(Math.round(window.scrollY + window.innerHeight) >= document.body.clientHeight){
-        selectedNavIndex = navItems.length - 1;
+  // 페이지 맨 끝 도달 시 마지막 섹션(contact) 강제 active
+  const lastSection = sections[sections.length - 1];
+  window.addEventListener('scroll', () => {
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+    if (atBottom) setActive(lastSection.id);
+  }, { passive: true });
+}
+
+/* ===========================================
+   Count-up
+=========================================== */
+function initCountUp() {
+  const years = calcCareerYears();
+  const yearEl = document.getElementById('yearsStatText');
+  if (yearEl) yearEl.dataset.target = years;
+
+  const els = document.querySelectorAll('.count-up');
+  if (!els.length) return;
+
+  const run = el => {
+    const target = +el.dataset.target;
+    const duration = 1500;
+    const interval = Math.floor(duration / target);
+    let current = 0;
+    const timer = setInterval(() => {
+      current++;
+      el.textContent = current;
+      if (current >= target) clearInterval(timer);
+    }, interval);
+  };
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        run(entry.target);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  els.forEach(el => io.observe(el));
+}
+
+/* ===========================================
+   Fade-up
+=========================================== */
+function initFadeUp() {
+  const els = document.querySelectorAll('.fade-up');
+  if (!els.length) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  els.forEach(el => io.observe(el));
+}
+
+/* ===========================================
+   Clipboard copy
+=========================================== */
+function initClipboardCopy() {
+  const btn = document.getElementById('copyEmailBtn');
+  if (!btn) return;
+
+  btn.addEventListener('click', async () => {
+    const email = btn.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+      showToast('이메일 주소가 복사되었습니다 ✓');
+    } catch {
+      showToast(email);
     }
-    selectNavItem(navItems[selectedNavIndex])
-})
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+/* ===========================================
+   Scroll to top
+=========================================== */
+function initScrollTop() {
+  const btn = document.getElementById('scrollTop');
+  if (!btn) return;
+  window.addEventListener('scroll', () =>
+    btn.classList.toggle('visible', window.scrollY > 400),
+    { passive: true }
+  );
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
