@@ -34,7 +34,7 @@
 
   <!-- ===================== HEADER ===================== -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="#hero" class="flex items-center text-ink" aria-label="홈으로">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="16 18 22 12 16 6"/>
@@ -61,7 +61,7 @@
     </div>
 
     <div id="mobileMenu" class="mobile-menu md:hidden hidden border-t border-line">
-      <nav class="flex flex-col px-6 py-5 gap-5 max-w-6xl mx-auto">
+      <nav class="flex flex-col px-6 py-5 gap-5 max-w-7xl mx-auto">
         <a href="#about"      class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">About</a>
         <a href="#skills"     class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">Skills</a>
         <a href="#experience" class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">Experience</a>
@@ -74,7 +74,7 @@
 
     <!-- ===================== HERO ===================== -->
     <section id="hero" class="min-h-screen flex flex-col justify-center pt-16">
-      <div class="max-w-6xl mx-auto px-6 w-full">
+      <div class="max-w-7xl mx-auto px-6 w-full">
 
         <p class="hero-label fade-up">
           박찬웅 &nbsp;·&nbsp; <span id="careerYears"></span>년 차
@@ -104,7 +104,7 @@
 
     <!-- ===================== ABOUT ===================== -->
     <section id="about" class="py-24 border-t border-line">
-      <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-6">
 
         <p class="section-eyebrow fade-up">About</p>
 
@@ -162,7 +162,7 @@
 
     <!-- ===================== SKILLS ===================== -->
     <section id="skills" class="py-24 bg-ink text-paper">
-      <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-6">
 
         <p class="section-eyebrow-inv fade-up">Skills</p>
         <h2 class="section-heading-inv mt-3 fade-up delay-1">기술 스택</h2>
@@ -171,66 +171,81 @@
 
           <div class="fade-up py-8 sm:py-0 sm:pr-12">
             <p class="skills-cat">Markup &amp; Style</p>
-            <ul class="mt-6 space-y-4">
-              <li class="skill-item">
-                <span class="skill-name">HTML5</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">95</span>
+            <ul class="mt-6 flex flex-wrap gap-5">
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">HTML5</span>
               </li>
-              <li class="skill-item">
-                <span class="skill-name">CSS3</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">90</span>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">CSS3</span>
               </li>
-              <li class="skill-item">
-                <span class="skill-name">SCSS (BEM)</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">85</span>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">SCSS</span>
               </li>
             </ul>
           </div>
 
           <div class="fade-up delay-1 py-8 sm:py-0 sm:px-12 border-t sm:border-t-0 sm:border-l border-white/10">
             <p class="skills-cat">Script &amp; Library</p>
-            <ul class="mt-6 space-y-4">
-              <li class="skill-item">
-                <span class="skill-name">JavaScript</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">80</span>
+            <ul class="mt-6 flex flex-wrap gap-5">
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">JavaScript</span>
               </li>
-              <li class="skill-item">
-                <span class="skill-name">jQuery</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">85</span>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">jQuery</span>
               </li>
-              <li class="skill-item">
-                <span class="skill-name">GSAP</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">75</span>
+              <li class="skill-card">
+                <img src="https://cdn.simpleicons.org/greensock/88CE02" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">GSAP</span>
               </li>
-              <li class="skill-item">
-                <span class="skill-name">Swiper</span>
-                <span class="skill-dots"></span>
-                <span class="skill-pct">85</span>
+              <li class="skill-card">
+                <img src="https://cdn.simpleicons.org/swiper/6332F6" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">Swiper</span>
+              </li>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">Vue.js</span>
               </li>
             </ul>
           </div>
 
           <div class="fade-up delay-2 py-8 sm:py-0 sm:px-12 border-t sm:border-t-0 sm:border-l border-white/10">
             <p class="skills-cat">Tooling</p>
-            <ul class="mt-6 space-y-4">
-              <li class="skill-tool">Git</li>
-              <li class="skill-tool">Figma</li>
-              <li class="skill-tool">VS Code</li>
-              <li class="skill-tool">IntelliJ IDEA</li>
+            <ul class="mt-6 flex flex-wrap gap-5">
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">Git</span>
+              </li>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">Figma</span>
+              </li>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">VS Code</span>
+              </li>
+              <li class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">IntelliJ</span>
+              </li>
             </ul>
           </div>
 
           <div class="fade-up delay-3 py-8 sm:py-0 sm:pl-12 border-t sm:border-t-0 sm:border-l border-white/10">
             <p class="skills-cat">AI 활용</p>
-            <ul class="mt-6 space-y-4">
-              <li class="skill-tool">Claude Code</li>
-              <li class="skill-tool">Gemini</li>
+            <ul class="mt-6 flex flex-wrap gap-5">
+              <li class="skill-card">
+                <img src="https://cdn.simpleicons.org/claude/ffffff" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">Claude Code</span>
+              </li>
+              <li class="skill-card">
+                <img src="https://cdn.simpleicons.org/googlegemini/ffffff" alt="" class="skill-icon" aria-hidden="true" />
+                <span class="skill-label">Gemini</span>
+              </li>
             </ul>
           </div>
 
@@ -240,13 +255,13 @@
 
     <!-- ===================== EXPERIENCE ===================== -->
     <section id="experience" class="py-24 border-t border-line">
-      <div class="max-w-6xl mx-auto px-6">
-
+      <div class="max-w-7xl mx-auto px-6">
         <p class="section-eyebrow fade-up">Experience</p>
         <h2 class="section-heading mt-3 fade-up delay-1">경력 및 프로젝트</h2>
+      </div>
 
-        <!-- project marquee -->
-        <div class="mq-wrap" aria-hidden="true">
+      <!-- project marquee (full-width) -->
+      <div class="mq-wrap" aria-hidden="true">
           <!-- row 1: left -->
           <div class="mq-row">
             <div class="mq-belt">
@@ -329,8 +344,9 @@
               <span class="mq-tag">양구백자박물관</span>
             </div>
           </div>
-        </div>
+      </div>
 
+      <div class="max-w-7xl mx-auto px-6">
         <div class="mt-14">
 
           <!-- 스프링웍스 -->
@@ -346,19 +362,12 @@
             <ul class="exp-items">
               <li>
                 <span class="et et-web">웹</span>
-                2026 춘천 세계태권도품새선수권대회 홈페이지 퍼블리싱
-              </li>
-              <li>
-                <span class="et et-web">웹</span>
-                전남체육대회(구례) 홈페이지 퍼블리싱
-              </li>
-              <li>
-                <span class="et et-maint">유지보수·리팩토링</span>
-                경기도체육대회(가평) 콘텐츠 유지보수 및 코드 리팩토링
+                <a href="https://cc2026wtpc.com/" target="_blank" rel="noopener noreferrer" class="exp-link">2026 춘천 세계태권도품새선수권대회</a>,
+                <a href="https://jncjsports.kr/" target="_blank" rel="noopener noreferrer" class="exp-link">전남체육대회(구례)</a> 홈페이지 퍼블리싱
               </li>
               <li>
                 <span class="et et-maint">유지보수</span>
-                춘천시청 및 시립도서관 등 다수 유지보수
+                <a href="https://gpsports.gp.go.kr/" target="_blank" rel="noopener noreferrer" class="exp-link">경기도체육대회(가평)</a> 콘텐츠 유지보수 및 코드 리팩토링 · 춘천시청 및 시립도서관 등 다수
               </li>
             </ul>
           </div>
@@ -373,7 +382,7 @@
             <ul class="exp-items">
               <li>
                 <span class="et et-web">웹</span>
-                강원관광재단 통합고객시스템(관리자/사용자) 홈페이지 퍼블리싱
+                강원관광재단 통합고객시스템(관리자/사용자), 양구백자박물관, 평창군체육회, 춘천인형극제, 춘천 레저·태권도 조직위원회, 통일강원연구원 등 다수 퍼블리싱
               </li>
               <li>
                 <span class="et et-dev">개발</span>
@@ -388,12 +397,8 @@
                 춘천도시공사 지하도상가, 봄내체육관, 송암빙상장, 삼탄터치스크린 안내시스템
               </li>
               <li>
-                <span class="et et-web">웹</span>
-                양구백자박물관, 평창군체육회, 춘천인형극제, 춘천 레저·태권도 조직위원회, 통일강원연구원 등 다수
-              </li>
-              <li>
                 <span class="et et-self">자사</span>
-                페이티드 앱 소개페이지 퍼블리싱 및 프론트 개발 · 나모 자사 홈페이지 리뉴얼
+                페이티드 앱 소개페이지·사전예약 페이지 퍼블리싱 및 프론트 개발 · 나모 자사 홈페이지 리뉴얼
               </li>
             </ul>
           </div>
@@ -419,7 +424,7 @@
 
     <!-- ===================== CONTACT ===================== -->
     <section id="contact" class="py-24 bg-ink">
-      <div class="max-w-6xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-6">
 
         <p class="contact-heading fade-up">Contact</p>
         <p class="text-white/40 mt-6 max-w-xs leading-relaxed text-sm fade-up delay-1">
@@ -445,7 +450,7 @@
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="bg-ink border-t border-white/10 py-6">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-white/25 text-xs">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-white/25 text-xs">
       <p>© <span id="footerYear"></span> 박찬웅. All rights reserved.</p>
       <p>Web Publisher · HTML · CSS · JavaScript</p>
     </div>
