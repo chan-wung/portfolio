@@ -365,7 +365,8 @@ section[id] {
    Projects
 =========================================== */
 .project-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   border: 1.5px solid #e5e0d8;
   border-radius: 12px;
   padding: 1.75rem;
@@ -401,7 +402,7 @@ section[id] {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 1rem;
+  padding-top: 1rem;
 }
 .project-tag {
   font-size: 0.68rem;
@@ -415,6 +416,41 @@ section[id] {
 .project-card:hover .project-tag {
   border-color: #c8c2bb;
   color: #57534e;
+}
+.project-card > div:first-child {
+  flex: 1;
+}
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+.project-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.project-btn--demo {
+  background: #111110;
+  color: #faf9f7;
+}
+.project-btn--demo:hover {
+  background: #3d3935;
+}
+.project-btn--git {
+  border: 1.5px solid #e5e0d8;
+  color: #57534e;
+}
+.project-btn--git:hover {
+  border-color: #111110;
+  color: #111110;
 }
 
 /* ===========================================
