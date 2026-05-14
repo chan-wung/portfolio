@@ -7,16 +7,6 @@
 - **포트폴리오**: https://chan-wung.github.io/portfolio
 - **GitHub**: https://github.com/chan-wung
 
-## 📌 구성
-
-| 섹션 | 내용 |
-|------|------|
-| Hero | 타이핑 애니메이션, 경력 년차 자동 계산 |
-| About | 자기소개, 프로젝트 수·경력 카운트업 |
-| Skills | 기술 스택 아이콘 |
-| Experience | 전체 화면 프로젝트 마퀴, 경력 블록 |
-| Projects | 사이드 프로젝트 카드 |
-| Contact | 이메일 복사, GitHub 링크 |
 
 ## 🛠 기술 스택
 
