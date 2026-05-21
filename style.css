@@ -15,6 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.65;
   letter-spacing: 0.015em;
+  word-break: keep-all;
 }
 
 /* 섹션 앵커 스크롤 여백 — Contact 등 하단 섹션이 Experience에서 멈추는 문제 해결 */
@@ -268,9 +269,6 @@ section[id] {
   border-top: 1px solid #e5e0d8;
   padding: 2rem 0;
 }
-.exp-block:last-child {
-  border-bottom: 1px solid #e5e0d8;
-}
 
 .exp-meta {
   display: flex;
@@ -451,6 +449,82 @@ section[id] {
 .project-btn--git:hover {
   border-color: #111110;
   color: #111110;
+}
+
+/* ===========================================
+   Projects Swiper
+=========================================== */
+.projects-swiper {
+  padding-top: 6px !important;
+  margin-top: -6px;
+}
+
+.projects-swiper .swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+.projects-swiper .project-card {
+  flex: 1;
+}
+
+.proj-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.proj-pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.proj-pagination .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: #d5cfc8;
+  opacity: 1;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.25s, width 0.25s;
+  margin: 0 !important;
+}
+
+.proj-pagination .swiper-pagination-bullet-active {
+  background: #111110;
+  width: 20px;
+}
+
+.proj-arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.proj-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 1.5px solid #e5e0d8;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #57534e;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.proj-btn:hover:not(:disabled) {
+  border-color: #111110;
+  color: #111110;
+}
+
+.proj-btn.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* ===========================================
@@ -659,6 +733,8 @@ section[id] {
 @media (max-width: 640px) {
   .hero-title { letter-spacing: -0.03em; }
   .exp-meta   { flex-direction: column; gap: 0.25rem; }
+  .exp-items li { display: block; }
+  .et { display: block; width: fit-content; margin-bottom: 0.3rem; }
   .toast      { width: calc(100% - 2rem); white-space: normal; text-align: center; }
   .scroll-top-btn { bottom: 1rem; right: 1rem; }
 }

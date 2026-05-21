@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountUp();
   initClipboardCopy();
   initScrollTop();
+  initHeroParticles();
+  initProjectsSwiper();
 });
 
 /* ===========================================
@@ -219,3 +221,129 @@ function initScrollTop() {
   );
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
+
+/* ===========================================
+   Projects Swiper
+=========================================== */
+function initProjectsSwiper() {
+  if (typeof Swiper === 'undefined') return;
+  const el = document.querySelector('.projects-swiper');
+  if (!el) return;
+
+  new Swiper(el, {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    navigation: {
+      nextEl: '.proj-next',
+      prevEl: '.proj-prev',
+    },
+    pagination: {
+      el: '.proj-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1280: { slidesPerView: 3 },
+    },
+  });
+}
+
+/* ===========================================
+   Hero Particles
+=========================================== */
+function initHeroParticles() {
+  if (window.matchMedia('(max-width: 768px)').matches) return;
+
+  const section = document.getElementById('hero');
+  if (!section) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.setAttribute('aria-hidden', 'true');
+  canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+  section.insertBefore(canvas, section.firstChild);
+
+  const content = section.querySelector('.max-w-7xl');
+  if (content) { content.style.position = 'relative'; content.style.zIndex = '1'; }
+
+  const ctx = canvas.getContext('2d');
+  const COLORS = ['rgba(140,132,128,', 'rgba(61,57,53,', 'rgba(160,152,144,', 'rgba(87,83,78,'];
+  const COUNT = 45;
+  const mouse = { x: -9999, y: -9999, r: 100 };
+  let pts = [];
+
+  const resize = () => {
+    canvas.width = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+  };
+
+  const spawn = () => {
+    pts = [];
+    for (let i = 0; i < COUNT; i++) {
+      pts.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 2 + 0.8,
+        alpha: Math.random() * 0.22 + 0.07,
+        col: COLORS[Math.floor(Math.random() * COLORS.length)]
+      });
+    }
+  };
+
+  window.addEventListener('mousemove', e => {
+    const rect = section.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  resize(); spawn();
+  window.addEventListener('resize', () => { resize(); spawn(); });
+
+  let heroVisible = true;
+  new IntersectionObserver(entries => {
+    heroVisible = entries[0].isIntersecting;
+  }, { threshold: 0 }).observe(section);
+
+  const MAX_D = 85;
+  const MAX_D2 = MAX_D * MAX_D;
+
+  (function tick() {
+    requestAnimationFrame(tick);
+    if (!heroVisible) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i];
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < mouse.r && dist > 0) {
+        const f = (mouse.r - dist) / mouse.r * 0.55;
+        p.x += (dx / dist) * f;
+        p.y += (dy / dist) * f;
+      }
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -4) p.x = canvas.width + 4;
+      if (p.x > canvas.width + 4) p.x = -4;
+      if (p.y < -4) p.y = canvas.height + 4;
+      if (p.y > canvas.height + 4) p.y = -4;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.col + p.alpha + ')';
+      ctx.fill();
+
+      for (let j = i + 1; j < pts.length; j++) {
+        const q = pts[j];
+        const d2 = (p.x - q.x) ** 2 + (p.y - q.y) ** 2;
+        if (d2 < MAX_D2) {
+          const d = Math.sqrt(d2);
+          ctx.strokeStyle = `rgba(140,132,128,${(1 - d / MAX_D) * 0.1})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+        }
+      }
+    }
+  })();
+}
+

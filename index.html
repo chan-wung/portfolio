@@ -29,6 +29,7 @@
       }
     }
   </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-paper text-ink font-sans antialiased">
@@ -76,7 +77,7 @@
   <main>
 
     <!-- ===================== HERO ===================== -->
-    <section id="hero" class="min-h-screen flex flex-col justify-center pt-16">
+    <section id="hero" class="min-h-screen flex flex-col justify-center pt-16 relative overflow-hidden">
       <div class="max-w-7xl mx-auto px-6 w-full">
 
         <p class="hero-label fade-up">
@@ -365,7 +366,7 @@
             <ul class="exp-items">
               <li>
                 <span class="et et-web">웹</span>
-                <a href="https://cc2026wtpc.com/" target="_blank" rel="noopener noreferrer" class="exp-link">2026 춘천 세계태권도품새선수권대회</a>,
+                <a href="https://cc2026wtpc.com/" target="_blank" rel="noopener noreferrer" class="exp-link">2026 춘천 세계태권도품새선수권대회,</a>
                 <a href="https://jncjsports.kr/" target="_blank" rel="noopener noreferrer" class="exp-link">전남체육대회(구례)</a> 홈페이지 퍼블리싱
               </li>
               <li>
@@ -432,51 +433,73 @@
         <p class="section-eyebrow fade-up">Projects</p>
         <h2 class="section-heading mt-3 fade-up delay-1">사이드 프로젝트</h2>
 
-        <div class="mt-14 grid sm:grid-cols-2 gap-6">
+        <div class="mt-14 fade-up delay-2">
+          <div class="swiper projects-swiper">
+            <div class="swiper-wrapper">
 
-          <!-- todolist -->
-          <div class="project-card fade-up delay-1">
-            <div>
-              <p class="project-type">사이드 프로젝트</p>
-              <h3 class="project-name">Todo List</h3>
-              <p class="project-desc">React + TypeScript 기반 할 일 관리 앱. 우선순위·마감일·카테고리 필터링, localStorage 영속성 지원.</p>
-            </div>
-            <div class="project-tags">
-              <span class="project-tag">React</span>
-              <span class="project-tag">TypeScript</span>
-              <span class="project-tag">Vite</span>
-              <span class="project-tag">SCSS</span>
-            </div>
-            <div class="project-links">
-              <a href="https://todolist-two-smoky.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--demo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                데모 보기
-              </a>
-              <a href="https://github.com/chan-wung/sideproject-todolist" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--git">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                GitHub
-              </a>
+              <!-- todolist -->
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div>
+                    <p class="project-type">사이드 프로젝트</p>
+                    <h3 class="project-name">Todo List</h3>
+                    <p class="project-desc">React + TypeScript 기반 할 일 관리 앱. 우선순위·마감일·카테고리 필터링, localStorage 영속성 지원.</p>
+                  </div>
+                  <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">TypeScript</span>
+                    <span class="project-tag">Vite</span>
+                    <span class="project-tag">SCSS</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://todolist-two-smoky.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--demo">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      데모 보기
+                    </a>
+                    <a href="https://github.com/chan-wung/sideproject-todolist" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--git">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- deckLog -->
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div>
+                    <p class="project-type">사이드 프로젝트</p>
+                    <h3 class="project-name">DeckLog</h3>
+                    <p class="project-desc">TFT 덱 시뮬레이터 + 전적 검색 웹앱. 4×7 헥사 그리드에서 챔피언 배치 및 시너지 분석.</p>
+                  </div>
+                  <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">TypeScript</span>
+                    <span class="project-tag">Zustand</span>
+                    <span class="project-tag">SCSS</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/chan-wung/deckLog" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--git">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-          <!-- deckLog -->
-          <div class="project-card fade-up delay-2">
-            <div>
-              <p class="project-type">사이드 프로젝트</p>
-              <h3 class="project-name">DeckLog</h3>
-              <p class="project-desc">TFT 덱 시뮬레이터 + 전적 검색 웹앱. 4×7 헥사 그리드에서 챔피언 배치 및 시너지 분석.</p>
-            </div>
-            <div class="project-tags">
-              <span class="project-tag">React</span>
-              <span class="project-tag">TypeScript</span>
-              <span class="project-tag">Zustand</span>
-              <span class="project-tag">SCSS</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/chan-wung/deckLog" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--git">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                GitHub
-              </a>
+          <!-- Controls -->
+          <div class="proj-controls">
+            <div class="proj-pagination"></div>
+            <div class="proj-arrows">
+              <button class="proj-btn proj-prev" aria-label="이전 프로젝트">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button class="proj-btn proj-next" aria-label="다음 프로젝트">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
             </div>
           </div>
 
@@ -522,6 +545,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
