@@ -738,3 +738,18 @@ section[id] {
   .toast      { width: calc(100% - 2rem); white-space: normal; text-align: center; }
   .scroll-top-btn { bottom: 1rem; right: 1rem; }
 }
+
+/* ===========================================
+   Reduced motion (접근성)
+=========================================== */
+@media (prefers-reduced-motion: reduce) {
+  /* 마퀴 정지 */
+  .mq-belt { animation: none; }
+
+  /* 타이핑 커서 blink 정지 */
+  .typing-cursor { animation: none; opacity: 1; }
+
+  /* fade-up 즉시 노출 (트랜지션 제거) */
+  .fade-up { opacity: 1; transform: none; transition: none; }
+  .fade-up.in-view { opacity: 1; transform: none; }
+}

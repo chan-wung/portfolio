@@ -53,6 +53,12 @@ function initTyping() {
   if (!el) return;
 
   const text = 'Web Publisher';
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = text;
+    return;
+  }
+
   let i = 0;
 
   setTimeout(() => {
@@ -149,6 +155,11 @@ function initCountUp() {
 
   const els = document.querySelectorAll('.count-up');
   if (!els.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(el => { el.textContent = el.dataset.target; });
+    return;
+  }
 
   const run = el => {
     const target = +el.dataset.target;
@@ -268,6 +279,7 @@ function initProjectsSwiper() {
    Hero Particles
 =========================================== */
 function initHeroParticles() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(max-width: 768px)').matches) return;
 
   const section = document.getElementById('hero');
