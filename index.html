@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,15 +12,21 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
             'ink':   '#111110',
             'ink2':  '#3d3935',
+            'ink3':  '#1f1d1b',
             'muted': '#8c8480',
             'line':  '#e5e0d8',
+            'line-dark': '#333333',
             'paper': '#faf9f7',
             'card':  '#ffffff',
+            'card-dark': '#1a1a19',
+            'accent': '#6366f1',
+            'accent-hover': '#4f46e5',
           },
           fontFamily: {
             sans: ['Pretendard', 'Inter', 'sans-serif'],
@@ -48,12 +54,12 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-paper text-ink font-sans antialiased">
+<body class="bg-paper dark:bg-ink text-ink dark:text-paper font-sans antialiased transition-colors duration-300">
 
   <!-- ===================== HEADER ===================== -->
   <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#hero" class="flex items-center text-ink" aria-label="홈으로">
+      <a href="#hero" class="flex items-center text-ink dark:text-paper" aria-label="홈으로">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <polyline points="16 18 22 12 16 6"/>
           <polyline points="8 6 2 12 8 18"/>
@@ -61,31 +67,43 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-8">
-        <a href="#about"      class="nav-link text-sm text-muted hover:text-ink transition-colors">About</a>
-        <a href="#skills"     class="nav-link text-sm text-muted hover:text-ink transition-colors">Skills</a>
-        <a href="#experience" class="nav-link text-sm text-muted hover:text-ink transition-colors">Experience</a>
-        <a href="#projects"   class="nav-link text-sm text-muted hover:text-ink transition-colors">Projects</a>
-        <a href="#contact"    class="nav-link text-sm text-muted hover:text-ink transition-colors">Contact</a>
+        <a href="#about"      class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">About</a>
+        <a href="#skills"     class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Skills</a>
+        <a href="#experience" class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Experience</a>
+        <a href="#projects"   class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Projects</a>
+        <a href="#contact"    class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Contact</a>
       </nav>
 
-      <a href="#contact" class="hidden md:inline-flex items-center text-sm font-semibold border border-line px-4 py-2 rounded-full hover:border-ink hover:text-ink text-muted transition-colors">
-        연락하기
-      </a>
+      <div class="hidden md:flex items-center gap-4">
+        <button id="themeToggleBtn" class="p-2 text-muted hover:text-accent transition-colors" aria-label="다크모드 전환">
+          <svg class="w-5 h-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <a href="#contact" class="inline-flex items-center text-sm font-semibold border border-line dark:border-line-dark px-4 py-2 rounded-full hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent text-muted transition-colors">
+          연락하기
+        </a>
+      </div>
 
-      <button id="menuBtn" class="md:hidden p-2 -mr-2" aria-label="메뉴 열기" aria-expanded="false">
-        <span class="hamburger-line block w-5 h-px bg-ink mb-1.5 transition-all duration-300"></span>
-        <span class="hamburger-line block w-5 h-px bg-ink mb-1.5 transition-all duration-300"></span>
-        <span class="hamburger-line block w-5 h-px bg-ink transition-all duration-300"></span>
-      </button>
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="mobileThemeToggleBtn" class="p-2 text-muted hover:text-accent transition-colors" aria-label="다크모드 전환">
+          <svg class="w-5 h-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <button id="menuBtn" class="p-2 -mr-2" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="hamburger-line block w-5 h-px bg-ink dark:bg-paper mb-1.5 transition-all duration-300"></span>
+          <span class="hamburger-line block w-5 h-px bg-ink dark:bg-paper mb-1.5 transition-all duration-300"></span>
+          <span class="hamburger-line block w-5 h-px bg-ink dark:bg-paper transition-all duration-300"></span>
+        </button>
+      </div>
     </div>
 
-    <div id="mobileMenu" class="mobile-menu md:hidden hidden border-t border-line">
+    <div id="mobileMenu" class="mobile-menu md:hidden hidden border-t border-line dark:border-line-dark dark:bg-ink">
       <nav class="flex flex-col px-6 py-5 gap-5 max-w-7xl mx-auto">
-        <a href="#about"      class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">About</a>
-        <a href="#skills"     class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">Skills</a>
-        <a href="#experience" class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">Experience</a>
-        <a href="#projects"   class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">Projects</a>
-        <a href="#contact"    class="mobile-nav-link text-muted hover:text-ink transition-colors text-sm">Contact</a>
+        <a href="#about"      class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">About</a>
+        <a href="#skills"     class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Skills</a>
+        <a href="#experience" class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Experience</a>
+        <a href="#projects"   class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Projects</a>
+        <a href="#contact"    class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Contact</a>
       </nav>
     </div>
   </header>
@@ -94,7 +112,11 @@
 
     <!-- ===================== HERO ===================== -->
     <section id="hero" class="min-h-screen flex flex-col justify-center pt-16 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-6 w-full">
+      <!-- Mesh Backgrounds -->
+      <div class="hero-mesh" aria-hidden="true"></div>
+      <div class="hero-mesh-mouse" aria-hidden="true"></div>
+
+      <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
 
         <p class="hero-label fade-up">
           박찬웅 &nbsp;·&nbsp; <span id="careerYears"></span>년 차
@@ -123,49 +145,60 @@
     </section>
 
     <!-- ===================== ABOUT ===================== -->
-    <section id="about" class="py-24 border-t border-line">
+    <section id="about" class="py-24 border-t border-line dark:border-line-dark">
       <div class="max-w-7xl mx-auto px-6">
 
         <p class="section-eyebrow fade-up">About</p>
 
-        <div class="mt-10 grid md:grid-cols-2 gap-16 items-start">
-          <div class="fade-up delay-1">
-            <h2 class="about-headline">
-              꼼꼼한 마크업으로<br />
-              더 나은 경험을<br />
-              만들어갑니다.
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-12 gap-6">
+          
+          <!-- Main text box -->
+          <div class="fade-up delay-1 md:col-span-8 bg-card dark:bg-card-dark p-8 md:p-10 rounded-3xl border border-line dark:border-line-dark shadow-sm">
+            <h2 class="about-headline mb-6">
+              꼼꼼한 마크업으로<br class="hidden md:block" /> 더 나은 경험을 만들어갑니다.
             </h2>
+            <div class="space-y-4 text-ink2 dark:text-muted leading-relaxed text-sm md:text-base">
+              <p>관공서·공공기관 중심의 다양한 웹, 앱, 키오스크 프로젝트를 함께해온 웹 퍼블리셔입니다.</p>
+              <p>
+                <span class="text-ink dark:text-paper font-semibold">BEM 방법론</span>과
+                <span class="text-ink dark:text-paper font-semibold">SCSS</span>로 재사용성과 유지보수성이 뛰어난 코드를 작성하고,
+                <span class="text-ink dark:text-paper font-semibold">웹 접근성(A11y)</span>과
+                <span class="text-ink dark:text-paper font-semibold">크로스브라우징</span>을 엄격히 고려한 탄탄한 마크업을 지향합니다.
+              </p>
+              <p>
+                <span class="text-ink dark:text-paper font-semibold">GSAP</span>과
+                <span class="text-ink dark:text-paper font-semibold">Swiper</span>를 활용한 동적인 UI/UX 구현에 능숙하며,
+                매 작업마다 <em class="text-ink dark:text-paper not-italic font-semibold">'깔끔하고 완성도 높은 코드'</em>를 위해 고민합니다.
+              </p>
+            </div>
           </div>
 
-          <div class="fade-up delay-2 space-y-4 text-ink2 leading-relaxed">
-            <p>
-              관공서·공공기관 중심의 다양한 웹, 앱, 키오스크 프로젝트를 함께해온
-              웹 퍼블리셔입니다.
-            </p>
-            <p>
-              <span class="text-ink font-semibold">BEM 방법론</span>과
-              <span class="text-ink font-semibold">SCSS</span>로 재사용성과 유지보수성이 뛰어난 코드를 작성하고,
-              <span class="text-ink font-semibold">웹 접근성(A11y)</span>과
-              <span class="text-ink font-semibold">크로스브라우징</span>을 엄격히 고려한 탄탄한 마크업을 지향합니다.
-            </p>
-            <p>
-              <span class="text-ink font-semibold">GSAP</span>과
-              <span class="text-ink font-semibold">Swiper</span>를 활용한 동적인 UI/UX 구현에 능숙하며,
-              매 작업마다 <em class="text-ink not-italic font-semibold">'깔끔하고 완성도 높은 코드'</em>를 위해 고민합니다.
-            </p>
+          <!-- Stats box 1 -->
+          <div class="fade-up delay-2 md:col-span-4 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark flex flex-col justify-center items-center text-center shadow-sm">
+            <p class="stat-num text-accent"><span class="count-up" data-target="40">0</span><span class="text-muted text-2xl font-normal">+</span></p>
+            <p class="stat-label">완료 프로젝트</p>
+          </div>
 
-            <div class="pt-4 grid grid-cols-2 gap-6">
-              <div class="fade-up delay-3">
-                <p class="stat-num"><span class="count-up" data-target="40">0</span><span class="text-muted text-2xl font-normal">+</span></p>
-                <p class="stat-label">완료 프로젝트</p>
-              </div>
-              <div class="fade-up delay-4">
-                <p class="stat-num"><span id="yearsStatText" class="count-up" data-target="0">0</span><span class="text-muted text-2xl font-normal">년</span></p>
-                <p class="stat-label">실무 경력</p>
-              </div>
-            </div>
+          <!-- Stats box 2 -->
+          <div class="fade-up delay-3 md:col-span-4 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark flex flex-col justify-center items-center text-center shadow-sm">
+            <p class="stat-num text-accent">
+              <span id="yearsStatText" class="count-up" data-target="0">0</span>
+              <span class="text-muted text-2xl font-normal group relative inline-block cursor-help">
+                년+
+                <!-- Tooltip -->
+                <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-max px-5 py-2 bg-ink dark:bg-paper text-paper dark:text-ink text-base font-semibold rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-xl pointer-events-none tracking-wide">
+                  총 <span id="totalMonthsText">0</span>개월
+                  <!-- Arrow -->
+                  <span class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-ink dark:border-t-paper"></span>
+                </span>
+              </span>
+            </p>
+            <p class="stat-label">실무 경력</p>
+          </div>
 
-            <div class="pt-2 flex flex-wrap gap-2 fade-up delay-4">
+          <!-- Keywords box -->
+          <div class="fade-up delay-4 md:col-span-8 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm flex flex-col justify-center">
+            <div class="flex flex-wrap gap-2">
               <span class="kw">BEM</span>
               <span class="kw">SCSS</span>
               <span class="kw">A11y</span>
@@ -176,95 +209,103 @@
               <span class="kw">키오스크</span>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- ===================== SKILLS ===================== -->
-    <section id="skills" class="py-24 bg-ink text-paper">
+    <section id="skills" class="py-24 bg-ink dark:bg-ink3 text-paper">
       <div class="max-w-7xl mx-auto px-6">
 
         <p class="section-eyebrow-inv fade-up">Skills</p>
         <h2 class="section-heading-inv mt-3 fade-up delay-1">기술 스택</h2>
 
-        <div class="mt-14 grid sm:grid-cols-4 gap-0 divide-y sm:divide-y-0">
+        <div class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          <div class="fade-up py-8 sm:py-0 sm:pr-12">
-            <p class="skills-cat">Markup &amp; Style</p>
-            <ul class="mt-6 flex flex-wrap gap-5">
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">HTML5</span>
+          <div class="fade-up bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">Markup &amp; Style</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">HTML5</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">CSS3</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">CSS3</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">SCSS</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">SCSS</span>
               </li>
             </ul>
           </div>
 
-          <div class="fade-up delay-1 py-8 sm:py-0 sm:px-12 border-t sm:border-t-0 sm:border-l border-white/10">
-            <p class="skills-cat">Script &amp; Library</p>
-            <ul class="mt-6 flex flex-wrap gap-5">
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">JavaScript</span>
+          <div class="fade-up delay-1 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">Script &amp; Library</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">JavaScript</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">jQuery</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">jQuery</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.simpleicons.org/greensock/88CE02" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">GSAP</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.simpleicons.org/greensock/88CE02" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">GSAP</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.simpleicons.org/swiper/6332F6" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">Swiper</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.simpleicons.org/swiper/6332F6" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Swiper</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">Vue.js</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="fade-up delay-2 py-8 sm:py-0 sm:px-12 border-t sm:border-t-0 sm:border-l border-white/10">
-            <p class="skills-cat">Tooling</p>
-            <ul class="mt-6 flex flex-wrap gap-5">
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">Git</span>
-              </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">Figma</span>
-              </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">VS Code</span>
-              </li>
-              <li class="skill-card">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">IntelliJ</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Vue.js</span>
               </li>
             </ul>
           </div>
 
-          <div class="fade-up delay-3 py-8 sm:py-0 sm:pl-12 border-t sm:border-t-0 sm:border-l border-white/10">
-            <p class="skills-cat">AI 활용</p>
-            <ul class="mt-6 flex flex-wrap gap-5">
-              <li class="skill-card">
-                <img src="https://cdn.simpleicons.org/claude/ffffff" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">Claude Code</span>
+          <div class="fade-up delay-2 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">Tooling</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Git</span>
               </li>
-              <li class="skill-card">
-                <img src="https://cdn.simpleicons.org/googlegemini/ffffff" alt="" class="skill-icon" aria-hidden="true" />
-                <span class="skill-label">Gemini</span>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Figma</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">VS Code</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">IntelliJ</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fade-up delay-3 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">AI 활용</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2 text-center">
+                <img src="https://cdn.simpleicons.org/claude" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Claude Code</span>
+              </li>
+              <li class="flex flex-col items-center gap-2 text-center">
+                <img src="https://cdn.simpleicons.org/googlegemini" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Gemini</span>
+              </li>
+              <li class="flex flex-col items-center gap-2 text-center">
+                <!-- Antigravity icon placeholder: Using a generic star/sparkle icon from Devicons/Heroicons as simpleicons doesn't officially have Antigravity yet -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-indigo-500" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-xs font-medium text-ink dark:text-paper">Antigravity</span>
               </li>
             </ul>
           </div>
@@ -274,7 +315,7 @@
     </section>
 
     <!-- ===================== EXPERIENCE ===================== -->
-    <section id="experience" class="py-24 border-t border-line">
+    <section id="experience" class="py-24 border-t border-line dark:border-line-dark">
       <div class="max-w-7xl mx-auto px-6">
         <p class="section-eyebrow fade-up">Experience</p>
         <h2 class="section-heading mt-3 fade-up delay-1">경력 및 프로젝트</h2>
@@ -443,7 +484,7 @@
     </section>
 
     <!-- ===================== PROJECTS ===================== -->
-    <section id="projects" class="py-24 border-t border-line">
+    <section id="projects" class="py-24 border-t border-line dark:border-line-dark">
       <div class="max-w-7xl mx-auto px-6">
 
         <p class="section-eyebrow fade-up">Projects</p>
@@ -524,7 +565,7 @@
     </section>
 
     <!-- ===================== CONTACT ===================== -->
-    <section id="contact" class="py-24 bg-ink">
+    <section id="contact" class="py-24 bg-ink dark:bg-ink3">
       <div class="max-w-7xl mx-auto px-6">
 
         <p class="contact-heading fade-up">Contact</p>

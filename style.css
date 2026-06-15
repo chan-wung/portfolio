@@ -60,6 +60,47 @@ section[id] {
    Hero
 =========================================== */
 
+.hero-mesh {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(147, 51, 234, 0.08) 0px, transparent 50%);
+}
+
+.hero-mesh-mouse {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 600px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(99, 102, 241, 0.12),
+    transparent 80%
+  );
+  transition: opacity 0.5s ease;
+}
+
+html.dark .hero-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(147, 51, 234, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(147, 51, 234, 0.15) 0px, transparent 50%);
+}
+
+html.dark .hero-mesh-mouse {
+  background: radial-gradient(
+    circle 600px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(99, 102, 241, 0.2),
+    transparent 80%
+  );
+}
+
 .hero-label {
   font-size: 1rem;
   font-weight: 600;
@@ -753,3 +794,57 @@ section[id] {
   .fade-up { opacity: 1; transform: none; transition: none; }
   .fade-up.in-view { opacity: 1; transform: none; }
 }
+
+/* ===========================================
+   Dark Mode Overrides
+=========================================== */
+html.dark body { background-color: #111110; color: #faf9f7; }
+
+html.dark .hero-title,
+html.dark .about-headline,
+html.dark .stat-num,
+html.dark .exp-co,
+html.dark .project-name,
+html.dark .section-heading { color: #faf9f7; }
+
+html.dark .hero-label,
+html.dark .hero-desc,
+html.dark .exp-role,
+html.dark .project-desc { color: #a09890; }
+
+html.dark .nav-link::after { background: #6366f1; }
+html.dark .nav-link.active { color: #6366f1; }
+
+html.dark .btn-dark { background: #faf9f7; color: #111110; }
+html.dark .btn-dark:hover { background: #d5cfc8; }
+html.dark .btn-outline { color: #e5e0d8; border-color: #57534e; }
+html.dark .btn-outline:hover { border-color: #faf9f7; color: #faf9f7; }
+
+html.dark .kw { background: transparent; border-color: #333333; color: #a09890; }
+html.dark .kw:hover { border-color: #faf9f7; color: #faf9f7; }
+
+html.dark .badge-now { background: #faf9f7; color: #111110; }
+html.dark .exp-link { text-decoration-color: #57534e; }
+html.dark .exp-link:hover { color: #faf9f7; text-decoration-color: #faf9f7; }
+html.dark .exp-items li { color: #e5e0d8; }
+
+html.dark .project-card { border-color: #333333; }
+html.dark .project-card:hover { border-color: #faf9f7; }
+html.dark .project-btn--demo { background: #faf9f7; color: #111110; }
+html.dark .project-btn--demo:hover { background: #d5cfc8; }
+html.dark .project-btn--git { border-color: #57534e; color: #e5e0d8; }
+html.dark .project-btn--git:hover { border-color: #faf9f7; color: #faf9f7; }
+
+html.dark .mq-tag { background: transparent; border-color: #333333; color: #e5e0d8; }
+html.dark .mq-tag:hover { border-color: #faf9f7; color: #faf9f7; }
+
+html.dark .proj-btn { background: transparent; border-color: #333333; color: #e5e0d8; }
+html.dark .proj-btn:hover:not(:disabled) { border-color: #faf9f7; color: #faf9f7; }
+
+html.dark .proj-pagination .swiper-pagination-bullet { background: #57534e; }
+html.dark .proj-pagination .swiper-pagination-bullet-active { background: #faf9f7; }
+
+html.dark #header.scrolled { background: rgba(17, 17, 16, 0.92); border-color: #333; }
+html.dark .mobile-menu { background: rgba(17, 17, 16, 0.97); }
+
+html.dark .toast { background: #1a1a19; border-color: #333; color: #faf9f7; }

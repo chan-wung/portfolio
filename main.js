@@ -17,31 +17,35 @@ function calcCareerYears() {
     (now.getMonth() - springStart.getMonth()) + 1,
     0
   );
-
-  return Math.floor((JINSUNG + NAMO + spring) / 12);
+  const totalMonths = JINSUNG + NAMO + spring;
+  const fullYears = Math.floor(totalMonths / 12);
+  const nthYear = totalMonths % 12 === 0 ? fullYears : fullYears + 1;
+  
+  return { fullYears, nthYear, totalMonths };
 }
 
 /* ===========================================
    Init
 =========================================== */
 document.addEventListener('DOMContentLoaded', () => {
-  const years = calcCareerYears();
+  const career = calcCareerYears();
 
   const careerEl = document.getElementById('careerYears');
-  if (careerEl) careerEl.textContent = years;
+  if (careerEl) careerEl.textContent = career.nthYear;
 
   const footerYear = document.getElementById('footerYear');
   if (footerYear) footerYear.textContent = new Date().getFullYear();
 
   initTyping();
   initHeader();
+  initThemeToggle();
   initMobileMenu();
   initScrollSpy();
   initFadeUp();
   initCountUp();
   initClipboardCopy();
   initScrollTop();
-  initHeroParticles();
+  initHeroMesh();
   initProjectsSwiper();
 });
 
@@ -112,6 +116,46 @@ function initMobileMenu() {
 }
 
 /* ===========================================
+   Theme Toggle (Dark Mode)
+=========================================== */
+function initThemeToggle() {
+  const btns = [document.getElementById('themeToggleBtn'), document.getElementById('mobileThemeToggleBtn')];
+  const html = document.documentElement;
+  
+  const savedTheme = localStorage.getItem('theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  const setDark = (isDark) => {
+    if (isDark) {
+      html.classList.add('dark');
+      html.classList.remove('light');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.classList.remove('dark');
+      html.classList.add('light');
+      localStorage.setItem('theme', 'light');
+    }
+    btns.forEach(btn => {
+      if (btn) btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    });
+  };
+
+  if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+    setDark(true);
+  } else {
+    setDark(false);
+  }
+
+  btns.forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const isCurrentlyDark = html.classList.contains('dark');
+      setDark(!isCurrentlyDark);
+    });
+  });
+}
+
+/* ===========================================
    Scroll spy
 =========================================== */
 function initScrollSpy() {
@@ -149,9 +193,12 @@ function initScrollSpy() {
    Count-up
 =========================================== */
 function initCountUp() {
-  const years = calcCareerYears();
+  const career = calcCareerYears();
   const yearEl = document.getElementById('yearsStatText');
-  if (yearEl) yearEl.dataset.target = years;
+  if (yearEl) yearEl.dataset.target = career.fullYears;
+
+  const monthsEl = document.getElementById('totalMonthsText');
+  if (monthsEl) monthsEl.textContent = career.totalMonths;
 
   const els = document.querySelectorAll('.count-up');
   if (!els.length) return;
@@ -276,102 +323,28 @@ function initProjectsSwiper() {
 }
 
 /* ===========================================
-   Hero Particles
+   Hero Mesh Gradient
 =========================================== */
-function initHeroParticles() {
+function initHeroMesh() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(max-width: 768px)').matches) return;
-
+  
   const section = document.getElementById('hero');
-  if (!section) return;
+  const mouseMesh = document.querySelector('.hero-mesh-mouse');
+  if (!section || !mouseMesh) return;
 
-  const canvas = document.createElement('canvas');
-  canvas.setAttribute('aria-hidden', 'true');
-  canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;';
-  section.insertBefore(canvas, section.firstChild);
-
-  const content = section.querySelector('.max-w-7xl');
-  if (content) { content.style.position = 'relative'; content.style.zIndex = '1'; }
-
-  const ctx = canvas.getContext('2d');
-  const COLORS = ['rgba(140,132,128,', 'rgba(61,57,53,', 'rgba(160,152,144,', 'rgba(87,83,78,'];
-  const COUNT = 45;
-  const mouse = { x: -9999, y: -9999, r: 100 };
-  let pts = [];
-
-  const resize = () => {
-    canvas.width = section.offsetWidth;
-    canvas.height = section.offsetHeight;
-  };
-
-  const spawn = () => {
-    pts = [];
-    for (let i = 0; i < COUNT; i++) {
-      pts.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r: Math.random() * 2 + 0.8,
-        alpha: Math.random() * 0.22 + 0.07,
-        col: COLORS[Math.floor(Math.random() * COLORS.length)]
+  let ticking = false;
+  section.addEventListener('mousemove', e => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        mouseMesh.style.setProperty('--mouse-x', `${x}px`);
+        mouseMesh.style.setProperty('--mouse-y', `${y}px`);
+        ticking = false;
       });
+      ticking = true;
     }
-  };
-
-  window.addEventListener('mousemove', e => {
-    const rect = section.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
   });
-
-  resize(); spawn();
-  window.addEventListener('resize', () => { resize(); spawn(); });
-
-  let heroVisible = true;
-  new IntersectionObserver(entries => {
-    heroVisible = entries[0].isIntersecting;
-  }, { threshold: 0 }).observe(section);
-
-  const MAX_D = 85;
-  const MAX_D2 = MAX_D * MAX_D;
-
-  (function tick() {
-    requestAnimationFrame(tick);
-    if (!heroVisible) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let i = 0; i < pts.length; i++) {
-      const p = pts[i];
-      const dx = p.x - mouse.x, dy = p.y - mouse.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < mouse.r && dist > 0) {
-        const f = (mouse.r - dist) / mouse.r * 0.55;
-        p.x += (dx / dist) * f;
-        p.y += (dy / dist) * f;
-      }
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < -4) p.x = canvas.width + 4;
-      if (p.x > canvas.width + 4) p.x = -4;
-      if (p.y < -4) p.y = canvas.height + 4;
-      if (p.y > canvas.height + 4) p.y = -4;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.col + p.alpha + ')';
-      ctx.fill();
-
-      for (let j = i + 1; j < pts.length; j++) {
-        const q = pts[j];
-        const d2 = (p.x - q.x) ** 2 + (p.y - q.y) ** 2;
-        if (d2 < MAX_D2) {
-          const d = Math.sqrt(d2);
-          ctx.strokeStyle = `rgba(140,132,128,${(1 - d / MAX_D) * 0.1})`;
-          ctx.lineWidth = 0.5;
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
-        }
-      }
-    }
-  })();
 }
 
