@@ -69,9 +69,14 @@ function initTyping() {
 function initHeader() {
   const header = document.getElementById('header');
   if (!header) return;
-  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  const update = () => header.classList.toggle('scrolled', window.scrollY > 10);
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    requestAnimationFrame(() => { update(); ticking = false; });
+    ticking = true;
+  }, { passive: true });
+  update();
 }
 
 /* ===========================================
@@ -122,9 +127,15 @@ function initScrollSpy() {
 
   // 페이지 맨 끝 도달 시 마지막 섹션(contact) 강제 active
   const lastSection = sections[sections.length - 1];
+  let spyTicking = false;
   window.addEventListener('scroll', () => {
-    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
-    if (atBottom) setActive(lastSection.id);
+    if (spyTicking) return;
+    requestAnimationFrame(() => {
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+      if (atBottom) setActive(lastSection.id);
+      spyTicking = false;
+    });
+    spyTicking = true;
   }, { passive: true });
 }
 
@@ -215,10 +226,15 @@ function showToast(msg) {
 function initScrollTop() {
   const btn = document.getElementById('scrollTop');
   if (!btn) return;
-  window.addEventListener('scroll', () =>
-    btn.classList.toggle('visible', window.scrollY > 400),
-    { passive: true }
-  );
+  let topTicking = false;
+  window.addEventListener('scroll', () => {
+    if (topTicking) return;
+    requestAnimationFrame(() => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+      topTicking = false;
+    });
+    topTicking = true;
+  }, { passive: true });
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
