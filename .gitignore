@@ -1,0 +1,13 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS artifacts
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# System dumps
+bash.exe.stackdump
+*.stackdump

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ko" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박찬웅 | Web Publisher</title>
+  <meta name="description" content="웹 접근성과 크로스브라우징을 지향하는 웹 퍼블리셔 박찬웅의 포트폴리오입니다." />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'ink':   '#111110',
+            'ink2':  '#3d3935',
+            'ink3':  '#1f1d1b',
+            'muted': '#8c8480',
+            'line':  '#e5e0d8',
+            'line-dark': '#333333',
+            'paper': '#faf9f7',
+            'card':  '#ffffff',
+            'card-dark': '#1a1a19',
+            'accent': '#6366f1',
+            'accent-hover': '#4f46e5',
+          },
+          fontFamily: {
+            sans: ['Pretendard', 'Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://chan-wung.github.io/portfolio/" />
+  <meta property="og:title"       content="박찬웅 | Web Publisher" />
+  <meta property="og:description" content="웹 접근성과 크로스브라우징을 지향하는 웹 퍼블리셔 박찬웅의 포트폴리오입니다." />
+  <!-- TODO: og:image — 썸네일 이미지 확정 후 경로 채울 것 (권장: 1200×630px) -->
+  <!-- <meta property="og:image" content="https://chan-wung.github.io/portfolio/og-thumbnail.png" /> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="박찬웅 | Web Publisher" />
+  <meta name="twitter:description" content="웹 접근성과 크로스브라우징을 지향하는 웹 퍼블리셔 박찬웅의 포트폴리오입니다." />
+  <!-- TODO: twitter:image — og:image와 동일 이미지 경로 채울 것 -->
+  <!-- <meta name="twitter:image" content="https://chan-wung.github.io/portfolio/og-thumbnail.png" /> -->
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-paper dark:bg-ink text-ink dark:text-paper font-sans antialiased transition-colors duration-300">
+
+  <!-- ===================== HEADER ===================== -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center text-ink dark:text-paper" aria-label="홈으로">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#about"      class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">About</a>
+        <a href="#skills"     class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Skills</a>
+        <a href="#experience" class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Experience</a>
+        <a href="#projects"   class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Projects</a>
+        <a href="#contact"    class="nav-link text-sm text-muted hover:text-accent dark:hover:text-accent transition-colors">Contact</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-4">
+        <button id="themeToggleBtn" class="p-2 text-muted hover:text-accent transition-colors" aria-label="다크모드 전환">
+          <svg class="w-5 h-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <a href="#contact" class="inline-flex items-center text-sm font-semibold border border-line dark:border-line-dark px-4 py-2 rounded-full hover:border-accent hover:text-accent dark:hover:border-accent dark:hover:text-accent text-muted transition-colors">
+          연락하기
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="mobileThemeToggleBtn" class="p-2 text-muted hover:text-accent transition-colors" aria-label="다크모드 전환">
+          <svg class="w-5 h-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="w-5 h-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        <button id="menuBtn" class="p-2 -mr-2" aria-label="메뉴 열기" aria-expanded="false">
+          <span class="hamburger-line block w-5 h-px bg-ink dark:bg-paper mb-1.5 transition-all duration-300"></span>
+          <span class="hamburger-line block w-5 h-px bg-ink dark:bg-paper mb-1.5 transition-all duration-300"></span>
+          <span class="hamburger-line block w-5 h-px bg-ink dark:bg-paper transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu md:hidden hidden border-t border-line dark:border-line-dark dark:bg-ink">
+      <nav class="flex flex-col px-6 py-5 gap-5 max-w-7xl mx-auto">
+        <a href="#about"      class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">About</a>
+        <a href="#skills"     class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Skills</a>
+        <a href="#experience" class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Experience</a>
+        <a href="#projects"   class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Projects</a>
+        <a href="#contact"    class="mobile-nav-link text-muted hover:text-accent dark:hover:text-accent transition-colors text-sm">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="min-h-screen flex flex-col justify-center pt-16 relative overflow-hidden">
+      <!-- Mesh Backgrounds -->
+      <div class="hero-mesh" aria-hidden="true"></div>
+      <div class="hero-mesh-mouse" aria-hidden="true"></div>
+
+      <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+
+        <p class="hero-label fade-up">
+          박찬웅 &nbsp;·&nbsp; <span id="careerYears"></span>년 차
+        </p>
+
+        <h1 class="hero-title fade-up delay-1" aria-label="Web Publisher">
+          <span id="typingTitle" aria-hidden="true"></span><span class="typing-cursor" aria-hidden="true">|</span>
+        </h1>
+
+        <div class="hero-bottom fade-up delay-2">
+          <p class="hero-desc">
+            접근성과 크로스브라우징을 꼼꼼히 챙기며,<br />
+            완성도 높은 마크업과 인터랙션으로<br />
+            사용자 경험을 만들어갑니다.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <a href="#experience" class="btn-dark">프로젝트 보기</a>
+            <a href="#contact"    class="btn-outline">연락하기</a>
+          </div>
+        </div>
+
+        <div class="scroll-hint fade-up delay-3" aria-hidden="true">
+          <span class="scroll-hint-arrow"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="py-24 border-t border-line dark:border-line-dark">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <p class="section-eyebrow fade-up">About</p>
+
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-12 gap-6">
+          
+          <!-- Main text box -->
+          <div class="fade-up delay-1 md:col-span-8 bg-card dark:bg-card-dark p-8 md:p-10 rounded-3xl border border-line dark:border-line-dark shadow-sm">
+            <h2 class="about-headline mb-6">
+              꼼꼼한 마크업으로<br class="hidden md:block" /> 더 나은 경험을 만들어갑니다.
+            </h2>
+            <div class="space-y-4 text-ink2 dark:text-muted leading-relaxed text-sm md:text-base">
+              <p>관공서·공공기관 중심의 다양한 웹, 앱, 키오스크 프로젝트를 함께해온 웹 퍼블리셔입니다.</p>
+              <p>
+                <span class="text-ink dark:text-paper font-semibold">BEM 방법론</span>과
+                <span class="text-ink dark:text-paper font-semibold">SCSS</span>로 재사용성과 유지보수성이 뛰어난 코드를 작성하고,
+                <span class="text-ink dark:text-paper font-semibold">웹 접근성(A11y)</span>과
+                <span class="text-ink dark:text-paper font-semibold">크로스브라우징</span>을 엄격히 고려한 탄탄한 마크업을 지향합니다.
+              </p>
+              <p>
+                <span class="text-ink dark:text-paper font-semibold">GSAP</span>과
+                <span class="text-ink dark:text-paper font-semibold">Swiper</span>를 활용한 동적인 UI/UX 구현에 능숙하며,
+                매 작업마다 <em class="text-ink dark:text-paper not-italic font-semibold">'깔끔하고 완성도 높은 코드'</em>를 위해 고민합니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stats box 1 -->
+          <div class="fade-up delay-2 md:col-span-4 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark flex flex-col justify-center items-center text-center shadow-sm">
+            <p class="stat-num text-accent"><span class="count-up" data-target="40">0</span><span class="text-muted text-2xl font-normal">+</span></p>
+            <p class="stat-label">완료 프로젝트</p>
+          </div>
+
+          <!-- Stats box 2 -->
+          <div class="fade-up delay-3 md:col-span-4 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark flex flex-col justify-center items-center text-center shadow-sm">
+            <p class="stat-num text-accent">
+              <span id="yearsStatText" class="count-up" data-target="0">0</span>
+              <span class="text-muted text-2xl font-normal group relative inline-block cursor-help">
+                년+
+                <!-- Tooltip -->
+                <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-max px-5 py-2 bg-ink dark:bg-paper text-paper dark:text-ink text-base font-semibold rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-xl pointer-events-none tracking-wide">
+                  총 <span id="totalMonthsText">0</span>개월
+                  <!-- Arrow -->
+                  <span class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-ink dark:border-t-paper"></span>
+                </span>
+              </span>
+            </p>
+            <p class="stat-label">실무 경력</p>
+          </div>
+
+          <!-- Keywords box -->
+          <div class="fade-up delay-4 md:col-span-8 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm flex flex-col justify-center">
+            <div class="flex flex-wrap gap-2">
+              <span class="kw">BEM</span>
+              <span class="kw">SCSS</span>
+              <span class="kw">A11y</span>
+              <span class="kw">크로스브라우징</span>
+              <span class="kw">GSAP</span>
+              <span class="kw">Swiper</span>
+              <span class="kw">반응형 웹</span>
+              <span class="kw">키오스크</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills" class="py-24 bg-ink dark:bg-ink3 text-paper">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <p class="section-eyebrow-inv fade-up">Skills</p>
+        <h2 class="section-heading-inv mt-3 fade-up delay-1">기술 스택</h2>
+
+        <div class="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div class="fade-up bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">Markup &amp; Style</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">HTML5</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">CSS3</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">SCSS</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fade-up delay-1 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">Script &amp; Library</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">JavaScript</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">jQuery</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.simpleicons.org/greensock/88CE02" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">GSAP</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.simpleicons.org/swiper/6332F6" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Swiper</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Vue.js</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fade-up delay-2 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">Tooling</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Git</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Figma</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">VS Code</span>
+              </li>
+              <li class="flex flex-col items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">IntelliJ</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fade-up delay-3 bg-card dark:bg-card-dark p-8 rounded-3xl border border-line dark:border-line-dark shadow-sm hover:border-accent dark:hover:border-accent transition-colors flex flex-col justify-between">
+            <p class="text-xs font-bold tracking-widest uppercase text-muted">AI 활용</p>
+            <ul class="mt-8 flex flex-wrap gap-6 items-center">
+              <li class="flex flex-col items-center gap-2 text-center">
+                <img src="https://cdn.simpleicons.org/claude" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Claude Code</span>
+              </li>
+              <li class="flex flex-col items-center gap-2 text-center">
+                <img src="https://cdn.simpleicons.org/googlegemini" alt="" class="w-10 h-10 object-contain" aria-hidden="true" />
+                <span class="text-xs font-medium text-ink dark:text-paper">Gemini</span>
+              </li>
+              <li class="flex flex-col items-center gap-2 text-center">
+                <!-- Antigravity icon placeholder: Using a generic star/sparkle icon from Devicons/Heroicons as simpleicons doesn't officially have Antigravity yet -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10 text-indigo-500" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M9 4.5a.75.75 0 01.721.544l.813 2.846a3.75 3.75 0 002.576 2.576l2.846.813a.75.75 0 010 1.442l-2.846.813a3.75 3.75 0 00-2.576 2.576l-.813 2.846a.75.75 0 01-1.442 0l-.813-2.846a3.75 3.75 0 00-2.576-2.576l-2.846-.813a.75.75 0 010-1.442l2.846-.813A3.75 3.75 0 007.466 7.89l.813-2.846A.75.75 0 019 4.5zM18 1.5a.75.75 0 01.728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 010 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 01-1.456 0l-.258-1.036a2.625 2.625 0 00-1.91-1.91l-1.036-.258a.75.75 0 010-1.456l1.036-.258a2.625 2.625 0 001.91-1.91l.258-1.036A.75.75 0 0118 1.5zM16.5 15a.75.75 0 01.712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 010 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 01-1.422 0l-.395-1.183a1.5 1.5 0 00-.948-.948l-1.183-.395a.75.75 0 010-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0116.5 15z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-xs font-medium text-ink dark:text-paper">Antigravity</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience" class="py-24 border-t border-line dark:border-line-dark">
+      <div class="max-w-7xl mx-auto px-6">
+        <p class="section-eyebrow fade-up">Experience</p>
+        <h2 class="section-heading mt-3 fade-up delay-1">경력 및 프로젝트</h2>
+      </div>
+
+      <!-- project marquee (full-width) -->
+      <div class="mq-wrap" aria-hidden="true">
+          <!-- row 1: left -->
+          <div class="mq-row">
+            <div class="mq-belt">
+              <span class="mq-tag">2026 춘천 세계태권도품새선수권대회</span>
+              <span class="mq-tag">전남체육대회(구례)</span>
+              <span class="mq-tag">경기도체육대회(가평)</span>
+              <span class="mq-tag">평창건강은행 관리자</span>
+              <span class="mq-tag">춘천 레저·태권도 조직위원회</span>
+              <span class="mq-tag">페이티드 소개</span>
+              <span class="mq-tag">근화동 396 청년창업지원센터</span>
+              <span class="mq-tag">속초사랑상품권</span>
+              <span class="mq-tag">지엔지테크</span>
+              <span class="mq-tag">후평2동 주민자치회</span>
+              <span class="mq-tag">송암빙상장 키오스크</span>
+              <span class="mq-tag">봄내체육관 키오스크</span>
+              <span class="mq-tag">e-타봄 사업소개</span>
+              <span class="mq-tag">아트챌린지</span>
+              <span class="mq-tag">춘천도시공사 리뉴얼</span>
+              <span class="mq-tag">강원관광재단 통합고객시스템</span>
+              <span class="mq-tag">엠퀵스</span>
+              <span class="mq-tag">링커스 글로벌</span>
+              <!-- dup -->
+              <span class="mq-tag">2026 춘천 세계태권도품새선수권대회</span>
+              <span class="mq-tag">전남체육대회(구례)</span>
+              <span class="mq-tag">경기도체육대회(가평)</span>
+              <span class="mq-tag">평창건강은행 관리자</span>
+              <span class="mq-tag">춘천 레저·태권도 조직위원회</span>
+              <span class="mq-tag">페이티드 소개</span>
+              <span class="mq-tag">근화동 396 청년창업지원센터</span>
+              <span class="mq-tag">속초사랑상품권</span>
+              <span class="mq-tag">지엔지테크</span>
+              <span class="mq-tag">후평2동 주민자치회</span>
+              <span class="mq-tag">송암빙상장 키오스크</span>
+              <span class="mq-tag">봄내체육관 키오스크</span>
+              <span class="mq-tag">e-타봄 사업소개</span>
+              <span class="mq-tag">아트챌린지</span>
+              <span class="mq-tag">춘천도시공사 리뉴얼</span>
+              <span class="mq-tag">강원관광재단 통합고객시스템</span>
+              <span class="mq-tag">엠퀵스</span>
+              <span class="mq-tag">링커스 글로벌</span>
+            </div>
+          </div>
+          <!-- row 2: right -->
+          <div class="mq-row mq-row--reverse">
+            <div class="mq-belt">
+              <span class="mq-tag">춘천도시공사 지하도상가 키오스크</span>
+              <span class="mq-tag">춘천안식원</span>
+              <span class="mq-tag">강원상품권 리뉴얼</span>
+              <span class="mq-tag">작은무대에부는바람</span>
+              <span class="mq-tag">라눅스</span>
+              <span class="mq-tag">속초오실</span>
+              <span class="mq-tag">오봉저수지</span>
+              <span class="mq-tag">2022 아비아마총회</span>
+              <span class="mq-tag">유니마코리아</span>
+              <span class="mq-tag">마을대학 후평2동 캠퍼스</span>
+              <span class="mq-tag">평창군체육회</span>
+              <span class="mq-tag">나모 홈페이지</span>
+              <span class="mq-tag">ms마트 SB모바일</span>
+              <span class="mq-tag">삼탄아트마인 리뉴얼</span>
+              <span class="mq-tag">춘천조사요원관리 시스템</span>
+              <span class="mq-tag">탄소가치시스템</span>
+              <span class="mq-tag">양구백자박물관</span>
+              <!-- dup -->
+              <span class="mq-tag">춘천도시공사 지하도상가 키오스크</span>
+              <span class="mq-tag">춘천안식원</span>
+              <span class="mq-tag">강원상품권 리뉴얼</span>
+              <span class="mq-tag">작은무대에부는바람</span>
+              <span class="mq-tag">라눅스</span>
+              <span class="mq-tag">속초오실</span>
+              <span class="mq-tag">오봉저수지</span>
+              <span class="mq-tag">2022 아비아마총회</span>
+              <span class="mq-tag">유니마코리아</span>
+              <span class="mq-tag">마을대학 후평2동 캠퍼스</span>
+              <span class="mq-tag">평창군체육회</span>
+              <span class="mq-tag">나모 홈페이지</span>
+              <span class="mq-tag">ms마트 SB모바일</span>
+              <span class="mq-tag">삼탄아트마인 리뉴얼</span>
+              <span class="mq-tag">춘천조사요원관리 시스템</span>
+              <span class="mq-tag">탄소가치시스템</span>
+              <span class="mq-tag">양구백자박물관</span>
+            </div>
+          </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mt-14">
+
+          <!-- 스프링웍스 -->
+          <div class="exp-block fade-up">
+            <div class="exp-meta">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h3 class="exp-co">㈜스프링웍스</h3>
+                <span class="badge-now">재직 중</span>
+              </div>
+              <time class="exp-date">2026.01 — 현재</time>
+            </div>
+            <p class="exp-role">웹사이트 전담 퍼블리싱 및 유지보수</p>
+            <ul class="exp-items">
+              <li>
+                <span class="et et-web">웹</span>
+                <a href="https://cc2026wtpc.com/" target="_blank" rel="noopener noreferrer" class="exp-link">2026 춘천 세계태권도품새선수권대회,</a>
+                <a href="https://jncjsports.kr/" target="_blank" rel="noopener noreferrer" class="exp-link">전남체육대회(구례)</a> 홈페이지 퍼블리싱
+              </li>
+              <li>
+                <span class="et et-maint">유지보수</span>
+                <a href="https://gpsports.gp.go.kr/" target="_blank" rel="noopener noreferrer" class="exp-link">경기도체육대회(가평)</a> 콘텐츠 유지보수 및 코드 리팩토링 · 춘천시청 및 시립도서관 등 다수
+              </li>
+            </ul>
+          </div>
+
+          <!-- 나모 -->
+          <div class="exp-block fade-up delay-1">
+            <div class="exp-meta">
+              <h3 class="exp-co">㈜나모</h3>
+              <time class="exp-date">2021.08 — 2024.11</time>
+            </div>
+            <p class="exp-role">40여 개 이상의 관공서/기관 웹사이트 구축, 리뉴얼 및 키오스크 퍼블리싱 전담</p>
+            <ul class="exp-items">
+              <li>
+                <span class="et et-web">웹</span>
+                강원관광재단 통합고객시스템(관리자/사용자), 양구백자박물관, 평창군체육회, 춘천인형극제, 춘천 레저·태권도 조직위원회, 통일강원연구원 등 다수 퍼블리싱
+              </li>
+              <li>
+                <span class="et et-dev">개발</span>
+                평창건강은행 관리자페이지 프론트 개발
+              </li>
+              <li>
+                <span class="et et-renewal">리뉴얼</span>
+                춘천도시공사 웹사이트 통합 리뉴얼, 인사급여 고도화 퍼블리싱 및 주차관리 시스템 구축
+              </li>
+              <li>
+                <span class="et et-kiosk">키오스크</span>
+                춘천도시공사 지하도상가, 봄내체육관, 송암빙상장, 삼탄터치스크린 안내시스템
+              </li>
+              <li>
+                <span class="et et-self">자사</span>
+                페이티드 앱 소개페이지·사전예약 페이지 퍼블리싱 및 프론트 개발 · 나모 자사 홈페이지 리뉴얼
+              </li>
+            </ul>
+          </div>
+
+          <!-- 진성이디씨 -->
+          <div class="exp-block fade-up delay-2">
+            <div class="exp-meta">
+              <h3 class="exp-co">㈜진성이디씨</h3>
+              <time class="exp-date">2021.02 — 2021.06</time>
+            </div>
+            <p class="exp-role">퍼블리싱 및 유지보수</p>
+            <ul class="exp-items">
+              <li>
+                <span class="et et-maint">유지보수</span>
+                춘천시청, 대형폐기물 사이트 등 유지보수
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section id="projects" class="py-24 border-t border-line dark:border-line-dark">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <p class="section-eyebrow fade-up">Projects</p>
+        <h2 class="section-heading mt-3 fade-up delay-1">사이드 프로젝트</h2>
+
+        <div class="mt-14 fade-up delay-2">
+          <div class="swiper projects-swiper">
+            <div class="swiper-wrapper">
+
+              <!-- todolist -->
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div>
+                    <p class="project-type">사이드 프로젝트</p>
+                    <h3 class="project-name">Todo List</h3>
+                    <p class="project-desc">React + TypeScript 기반 할 일 관리 앱. 우선순위·마감일·카테고리 필터링, localStorage 영속성 지원.</p>
+                  </div>
+                  <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">TypeScript</span>
+                    <span class="project-tag">Vite</span>
+                    <span class="project-tag">SCSS</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://todolist-two-smoky.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--demo">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      데모 보기
+                    </a>
+                    <a href="https://github.com/chan-wung/sideproject-todolist" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--git">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- deckLog -->
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div>
+                    <p class="project-type">사이드 프로젝트</p>
+                    <h3 class="project-name">DeckLog</h3>
+                    <p class="project-desc">TFT 덱 시뮬레이터 + 전적 검색 웹앱. 4×7 헥사 그리드에서 챔피언 배치 및 시너지 분석.</p>
+                  </div>
+                  <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">TypeScript</span>
+                    <span class="project-tag">Zustand</span>
+                    <span class="project-tag">SCSS</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/chan-wung/deckLog" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--git">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                      GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="proj-controls">
+            <div class="proj-pagination"></div>
+            <div class="proj-arrows">
+              <button class="proj-btn proj-prev" aria-label="이전 프로젝트">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button class="proj-btn proj-next" aria-label="다음 프로젝트">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="py-24 bg-ink dark:bg-ink3">
+      <div class="max-w-7xl mx-auto px-6">
+
+        <p class="contact-heading fade-up">Contact</p>
+        <p class="text-white/40 mt-6 max-w-xs leading-relaxed text-sm fade-up delay-1">
+          함께할 프로젝트나 좋은 기회가 있다면 언제든 편하게 연락 주세요.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-10 fade-up delay-2">
+          <button id="copyEmailBtn" data-email="fhou4444@naver.com" class="cta-light">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            fhou4444@naver.com
+          </button>
+          <a href="https://github.com/chan-wung" target="_blank" rel="noopener noreferrer" class="cta-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+      </div>
+      <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-ink border-t border-white/10 py-6">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-white/25 text-xs">
+      <p>© <span id="footerYear"></span> 박찬웅. All rights reserved.</p>
+      <p>Web Publisher · HTML · CSS · JavaScript</p>
+    </div>
+  </footer>
+
+  <button id="scrollTop" class="scroll-top-btn" aria-label="맨 위로 이동">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
