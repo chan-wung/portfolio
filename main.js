@@ -27,7 +27,7 @@ function calcCareerYears() {
 /* ===========================================
    Init
 =========================================== */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const career = calcCareerYears();
 
   const careerEl = document.getElementById('careerYears');
@@ -41,12 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMobileMenu();
   initScrollSpy();
-  initFadeUp();
   initCountUp();
   initClipboardCopy();
   initScrollTop();
   initHeroMesh();
   initProjectsSwiper();
+
+  // JSON 데이터 렌더링 후 fade-up 관찰 시작
+  await Promise.all([initMarquee(), initExperience()]);
+  initFadeUp();
 });
 
 /* ===========================================
@@ -320,6 +323,70 @@ function initProjectsSwiper() {
       1280: { slidesPerView: 3 },
     },
   });
+}
+
+/* ===========================================
+   Marquee (JSON-driven)
+=========================================== */
+async function initMarquee() {
+  const belt1 = document.getElementById('mq-belt-1');
+  const belt2 = document.getElementById('mq-belt-2');
+  if (!belt1 || !belt2) return;
+
+  try {
+    const res = await fetch('data/marquee.json');
+    const data = await res.json();
+
+    [[belt1, data.row1], [belt2, data.row2]].forEach(([belt, tags]) => {
+      belt.innerHTML = [...tags, ...tags]
+        .map(t => `<span class="mq-tag">${t}</span>`)
+        .join('');
+    });
+  } catch (e) {
+    console.warn('marquee.json 로드 실패', e);
+  }
+}
+
+/* ===========================================
+   Experience (JSON-driven)
+=========================================== */
+async function initExperience() {
+  const list = document.getElementById('exp-list');
+  if (!list) return;
+
+  try {
+    const res = await fetch('data/experience.json');
+    const data = await res.json();
+    const delays = ['', ' delay-1', ' delay-2', ' delay-3'];
+
+    list.innerHTML = data.map((co, idx) => {
+      const delay = delays[idx] || '';
+      const badge = co.current ? '<span class="badge-now">재직 중</span>' : '';
+
+      const items = co.items.map(item => {
+        const segs = item.segments.map(seg =>
+          seg.url
+            ? `<a href="${seg.url}" target="_blank" rel="noopener noreferrer" class="exp-link">${seg.text}</a>`
+            : seg.text
+        ).join('');
+        return `<li><span class="et et-${item.type}">${item.label}</span>${segs}</li>`;
+      }).join('');
+
+      return `
+        <div class="exp-block fade-up${delay}">
+          <div class="exp-meta">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="exp-co">${co.company}</h3>${badge}
+            </div>
+            <time class="exp-date">${co.period}</time>
+          </div>
+          <p class="exp-role">${co.role}</p>
+          <ul class="exp-items">${items}</ul>
+        </div>`;
+    }).join('');
+  } catch (e) {
+    console.warn('experience.json 로드 실패', e);
+  }
 }
 
 /* ===========================================
