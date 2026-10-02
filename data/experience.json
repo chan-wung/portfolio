@@ -10,8 +10,15 @@
         "label": "웹",
         "segments": [
           { "text": "2026 춘천 세계태권도품새선수권대회,", "url": "https://cc2026wtpc.com/" },
-          { "text": "전남체육대회(구례)", "url": "https://jncjsports.kr/" },
-          { "text": " 홈페이지 퍼블리싱" }
+          { "text": "전남체육대회(구례),", "url": "https://jncjsports.kr/" },
+          { "text": "강원 콘텐츠 온라인 플랫폼, 수의계약 모니터링 시스템 퍼블리싱" }
+        ]
+      },
+      {
+        "type": "dev",
+        "label": "프로그램",
+        "segments": [
+          { "text": "관광뉴스레터 메일 발송 프로그램" }
         ]
       },
       {
